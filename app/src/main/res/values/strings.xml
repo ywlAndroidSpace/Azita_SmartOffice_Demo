@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AzitaIoT</string>
+    <string name="title_activity_configuration">Configure</string>
+    <string name="error_field_required">This field is required.</string>
+    <string name="action_save">IO Control</string>
+    <string name="action_config">Configure</string>
+</resources>
