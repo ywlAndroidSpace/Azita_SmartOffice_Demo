@@ -765,10 +765,10 @@ public class MainActivity extends BaseActivity {
         if (true) {
             if (id == 2131558524) {   // Locker
                 String dummy = "{\"customerID\":2110, \"classID\":1037, \"typeID\":1001, \"DeviceID\":1001, \"value\":" + checkFlag + "}";
-                MQTTHelper_.getInstance_(mContext).publish(dummy, true);
+                MQTTHelper_.getInstance_(mContext).publish(dummy, false);
             } else if (id == 2131558525) {      // Door
                 String dummy = "{\"customerID\":2110, \"classID\":1036, \"typeID\":1001, \"DeviceID\":1001, \"value\":" + checkFlag + "}";
-                MQTTHelper_.getInstance_(mContext).publish(dummy, true);
+                MQTTHelper_.getInstance_(mContext).publish(dummy, false);
             } else if (id == 2131558526) {      // Curtain
                 String dummy = "{\"customerID\":2110, \"classID\":1027, \"typeID\":1001, \"DeviceID\":1001, \"value\":" + checkFlag + "}";
                 MQTTHelper_.getInstance_(mContext).publish(dummy, true);
