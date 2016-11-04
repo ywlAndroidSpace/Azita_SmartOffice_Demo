@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_checked="false"
-        android:drawable="@drawable/lighting_off_" />
+        android:drawable="@mipmap/lighting_off_" />
     <item
         android:state_checked="true"
-        android:drawable="@drawable/lighting_on_" />
+        android:drawable="@mipmap/lighting_on_" />
 </selector>

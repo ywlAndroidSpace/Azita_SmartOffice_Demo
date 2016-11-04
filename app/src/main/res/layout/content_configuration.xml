@@ -16,14 +16,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="30dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <ProgressBar
@@ -37,7 +34,7 @@
             <ImageView
                 android:background="@mipmap/smartofficeimage"
                 android:layout_width="match_parent"
-                android:layout_height="457dp" />
+                android:layout_height="match_parent" />
 
             <TextView
                 android:id="@+id/version_code_textview"

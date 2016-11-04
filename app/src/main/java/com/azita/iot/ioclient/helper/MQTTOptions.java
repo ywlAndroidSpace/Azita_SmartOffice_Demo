@@ -46,8 +46,8 @@ public class MQTTOptions {
 
     public MQTTOptions reloadConfig() {
 
-        clientId = AppHelper.getString(mContext, Constants.MQTT_CLIENT_ID, "pwc01");
-        username = AppHelper.getString(mContext, Constants.MQTT_USERNAME, "pwc01");
+        clientId = AppHelper.getString(mContext, Constants.MQTT_CLIENT_ID, "777777ffff5f");
+        username = AppHelper.getString(mContext, Constants.MQTT_USERNAME, "pwc03");
         password = AppHelper.getString(mContext, Constants.MQTT_PASSWORD, "PwcIsPassw0rd");
         port = Integer.parseInt(AppHelper.getString(mContext, Constants.MQTT_PORT, "6883"));
         host = AppHelper.getString(mContext, Constants.MQTT_HOST, "api.azitainno.com");

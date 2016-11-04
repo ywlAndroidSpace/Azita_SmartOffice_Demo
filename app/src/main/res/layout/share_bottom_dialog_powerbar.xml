@@ -28,15 +28,18 @@
             android:paddingTop="10dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageButton
                     android:id="@+id/powerbar_powerbar_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@mipmap/opt_powerbar_0"
+                    android:src="@mipmap/opt_powerbar_0"
+                    android:background="@null"
                     android:contentDescription="@string/app_name"
                     android:padding="5dp" />
 
@@ -51,16 +54,18 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageButton
                     android:id="@+id/powerbar_magcharging_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@mipmap/opt_magcharging_0"
+                    android:src="@mipmap/opt_magcharging_0"
+                    android:background="@null"
                     android:contentDescription="@string/app_name"
                     android:padding="5dp" />
 
@@ -75,16 +80,18 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageButton
                     android:id="@+id/powerbar_conference_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@mipmap/opt_conference_0"
+                    android:src="@mipmap/opt_conference_0"
+                    android:background="@null"
                     android:contentDescription="@string/app_name"
                     android:padding="5dp" />
 
@@ -99,16 +106,18 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageButton
                     android:id="@+id/powerbar_display_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@mipmap/opt_display_0"
+                    android:src="@mipmap/opt_display_0"
+                    android:background="@null"
                     android:contentDescription="@string/app_name"
                     android:padding="5dp" />
 

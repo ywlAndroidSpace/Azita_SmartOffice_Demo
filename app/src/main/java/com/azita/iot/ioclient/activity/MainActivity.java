@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.util.SparseIntArray;
@@ -18,17 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 import android.widget.Toast;
-import android.app.Activity;
+import android.widget.ToggleButton;
 
+import com.azita.iot.ioclient.Constants;
 import com.azita.iot.ioclient.R;
 import com.azita.iot.ioclient.helper.AppHelper;
 import com.azita.iot.ioclient.helper.BusProvider;
@@ -37,7 +35,15 @@ import com.azita.iot.ioclient.helper.MQTTHelper_;
 import com.azita.iot.ioclient.helper.MQTTOptions;
 import com.azita.iot.ioclient.helper.MQTTOptions_;
 import com.azita.iot.ioclient.helper.TSelfSignedSSLSocketFactory;
+import com.daimajia.easing.BaseEasingMethod;
+import com.daimajia.easing.Glider;
+import com.daimajia.easing.Skill;
+import com.nineoldandroids.animation.AnimatorSet;
 import com.squareup.otto.Subscribe;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.security.KeyManagementException;
@@ -48,22 +54,8 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.Bind; //InjectView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
-
-import com.daimajia.easing.BaseEasingMethod;
-import com.daimajia.easing.Glider;
-import com.daimajia.easing.Skill;
-import com.nineoldandroids.animation.AnimatorSet;
-
-import com.azita.iot.ioclient.Constants;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 /**
  *
@@ -85,7 +77,7 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
  * Modified by Lewis.Ling on 10/21/16 AD.
  *
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     public static final String TAG = "AzitaMQTT";
     private LinearLayout all_layout;
 
@@ -124,16 +116,51 @@ public class MainActivity extends BaseActivity {
     @Bind({R.id.button4, R.id.button5, R.id.button6})
     List<ToggleButton> nameViews;
 
+    @Bind(R.id.button7)
+    ToggleButton button7;
+    @Bind(R.id.button8)
+    ToggleButton button8;
+    @Bind(R.id.button9)
+    ToggleButton button9;
     @Bind(R.id.button1)
     ImageButton PowerBar;
+
     @Bind(R.id.button2)
     ImageButton LightingBar;
     @Bind(R.id.button3)
     ImageButton LightingDimmer;
 
+    @Bind(R.id.iv_temp)
+    ImageView ivTemp;
+    @Bind(R.id.iv_pm)
+    ImageView ivPm;
+    @Bind(R.id.iv_motion)
+    ImageView ivMotion;
+    @Bind(R.id.iv_cabinet)
+    ImageView ivCabinet;
+    @Bind(R.id.iv_door)
+    ImageView ivDoor;
+    @Bind(R.id.iv_window)
+    ImageView ivWindow;
+
+    @Bind(R.id.llTemp)
+    LinearLayout llTemp;
+    @Bind(R.id.llPm)
+    LinearLayout llPm;
+    @Bind(R.id.llMotion)
+    LinearLayout llMotion;
+    @Bind(R.id.llCabinet)
+    LinearLayout llCabinet;
+    @Bind(R.id.llDoor)
+    LinearLayout llDoor;
+    @Bind(R.id.ll_Window)
+    LinearLayout llWindow;
+
+
     @Bind(R.id.button10)
     ToggleButton masterButton;
     SparseIntArray bitMask = new SparseIntArray();
+
 
     private TSelfSignedSSLSocketFactory selfSignedSSLSocketFactory;
     private int mCurrentState = 0b000000000;
@@ -162,6 +189,54 @@ public class MainActivity extends BaseActivity {
             }
         }
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.llTemp:
+                if (nameViews.get(0).isChecked()) {
+                    nameViews.get(0).setChecked(false);
+                }else{
+                    nameViews.get(0).setChecked(true);
+                }
+                break;
+            case R.id.llPm:
+                if (nameViews.get(1).isChecked()) {
+                    nameViews.get(1).setChecked(false);
+                }else{
+                    nameViews.get(1).setChecked(true);
+                }
+                break;
+            case R.id.llMotion:
+                if (nameViews.get(2).isChecked()) {
+                    nameViews.get(2).setChecked(false);
+                }else{
+                    nameViews.get(2).setChecked(true);
+                }
+                break;
+            case R.id.llCabinet:
+                if (button7.isChecked()) {
+                    button7.setChecked(false);
+                }else{
+                    button7.setChecked(true);
+                }
+                break;
+            case R.id.llDoor:
+                if (button8.isChecked()) {
+                    button8.setChecked(false);
+                }else{
+                    button8.setChecked(true);
+                }
+                break;
+            case R.id.ll_Window:
+                if (button9.isChecked()) {
+                    button9.setChecked(false);
+                }else{
+                    button9.setChecked(true);
+                }
+                break;
+        }
     }
 
     public class EventHandler {
@@ -260,9 +335,16 @@ public class MainActivity extends BaseActivity {
         aqiButton = (ToggleButton) findViewById(R.id.button5);
         motionButton = (ToggleButton) findViewById(R.id.button6);
 
-        PowerBar.setBackgroundResource(R.drawable.powerbar_on_);
-        LightingBar.setBackgroundResource(R.drawable.lighting_on_);
-        LightingDimmer.setBackgroundResource(R.drawable.dimmer_6_);
+//        PowerBar.setBackgroundResource(R.drawable.powerbar_on_);
+//        LightingBar.setBackgroundResource(R.drawable.lighting_on_);
+//        LightingDimmer.setBackgroundResource(R.drawable.dimmer_6_);
+
+        llTemp.setOnClickListener(this);
+        llPm.setOnClickListener(this);
+        llMotion.setOnClickListener(this);
+        llCabinet.setOnClickListener(this);
+        llDoor.setOnClickListener(this);
+        llWindow.setOnClickListener(this);
 
         bitMask.put(R.id.button4, 1 << 3);
         bitMask.put(R.id.button5, 1 << 4);
@@ -535,7 +617,7 @@ public class MainActivity extends BaseActivity {
                     Lightingbar_2_btn_flag = 1;
                 }
                 _Lightingbar_2_btn = 1;
-                String dummy = "{\"customerID\":2110, \"classID\":1011, \"typeID\":1001, \"DeviceID\":1001, \"value\":\"0000" + Integer.toString(_Lightingdimmer_4_value*Lightingbar_4_btn_flag, 16) + Integer.toString(_Lightingdimmer_3_value*Lightingbar_3_btn_flag, 16) + Integer.toString(_Lightingdimmer_2_value*Lightingbar_2_btn_flag, 16) + Integer.toString(_Lightingdimmer_1_value*Lightingbar_1_btn_flag, 16) + "B\"}";
+                String dummy = "{\"customerID\":2110, \"classID\":1011, \"typeID\":1001, \"DeviceID\":1001, \"value\":\"0000" + Integer.toString(_Lightingdimmer_4_value * Lightingbar_4_btn_flag, 16) + Integer.toString(_Lightingdimmer_3_value * Lightingbar_3_btn_flag, 16) + Integer.toString(_Lightingdimmer_2_value * Lightingbar_2_btn_flag, 16) + Integer.toString(_Lightingdimmer_1_value * Lightingbar_1_btn_flag, 16) + "B\"}";
                 MQTTHelper_.getInstance_(mContext).publish(dummy, true);
                 shareBottomPopupDialog.dismiss();
             }
@@ -739,42 +821,111 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnCheckedChanged({R.id.button4, R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9})
-    public void checkChanged(CompoundButton view, final boolean check) {
+    public void checkChanged(CompoundButton view,boolean check) {
         int id = view.getId();
-
+        char c = (char) ((0b0 << 9) | mCurrentState);
         if (check) {
             mCurrentState |= bitMask.get(id);
         } else {
             mCurrentState &= ~bitMask.get(id);
         }
+        setImageResource(id, check);
 
-        char state = (char) (mCurrentState & 0b111111111);
-        masterButton.setChecked(state != 0);
-    }
-
-    @OnClick({R.id.button4, R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9, R.id.button10})
-    public void buttonClicked(ToggleButton button) {
-        char c = (char) ((0b0 << 9) | mCurrentState);
-        int id = button.getId();
         int checkFlag = 0;
-        if (button.isChecked()) {
+        if (check) {
             checkFlag = 1;
         } else {
             checkFlag = 0;
         }
         if (true) {
-            if (id == 2131558524) {   // Locker
+            if (id == button7.getId()) {   // Locker
                 String dummy = "{\"customerID\":2110, \"classID\":1037, \"typeID\":1001, \"DeviceID\":1001, \"value\":" + checkFlag + "}";
                 MQTTHelper_.getInstance_(mContext).publish(dummy, false);
-            } else if (id == 2131558525) {      // Door
+            } else if (id == button8.getId()) {      // Door
                 String dummy = "{\"customerID\":2110, \"classID\":1036, \"typeID\":1001, \"DeviceID\":1001, \"value\":" + checkFlag + "}";
                 MQTTHelper_.getInstance_(mContext).publish(dummy, false);
-            } else if (id == 2131558526) {      // Curtain
+            } else if (id == button9.getId()) {      // Curtain
                 String dummy = "{\"customerID\":2110, \"classID\":1027, \"typeID\":1001, \"DeviceID\":1001, \"value\":" + checkFlag + "}";
                 MQTTHelper_.getInstance_(mContext).publish(dummy, true);
             }
         }
+
+
+        char state = (char) (mCurrentState & 0b111111111);
+        masterButton.setChecked(state != 0);
     }
+
+    @OnClick({R.id.button4, R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9/*, R.id.button10*/})
+    public void buttonClicked(ToggleButton button) {
+//        char c = (char) ((0b0 << 9) | mCurrentState);
+//        int id = button.getId();
+//        int checkFlag = 0;
+//        if (button.isChecked()) {
+//            checkFlag = 1;
+//        } else {
+//            checkFlag = 0;
+//        }
+//        if (true) {
+//            if (id == 2131558524) {   // Locker
+//                String dummy = "{\"customerID\":2110, \"classID\":1037, \"typeID\":1001, \"DeviceID\":1001, \"value\":" + checkFlag + "}";
+//                MQTTHelper_.getInstance_(mContext).publish(dummy, false);
+//            } else if (id == 2131558525) {      // Door
+//                String dummy = "{\"customerID\":2110, \"classID\":1036, \"typeID\":1001, \"DeviceID\":1001, \"value\":" + checkFlag + "}";
+//                MQTTHelper_.getInstance_(mContext).publish(dummy, false);
+//            } else if (id == 2131558526) {      // Curtain
+//                String dummy = "{\"customerID\":2110, \"classID\":1027, \"typeID\":1001, \"DeviceID\":1001, \"value\":" + checkFlag + "}";
+//                MQTTHelper_.getInstance_(mContext).publish(dummy, true);
+//            }
+//        }
+    }
+
+    private void setImageResource(int id,boolean check){
+        switch (id){
+            case R.id.button4:
+                if(check){
+                    ivTemp.setImageResource(R.mipmap.temphumid_1);
+                }else{
+                    ivTemp.setImageResource(R.mipmap.temphumid_0);
+                }
+                break;
+            case R.id.button5:
+                if(check){
+                    ivPm.setImageResource(R.mipmap.aoi_1);
+                }else{
+                    ivPm.setImageResource(R.mipmap.aoi_0);
+                }
+                break;
+            case R.id.button6:
+                if(check){
+                    ivMotion.setImageResource(R.mipmap.motion_1);
+                }else{
+                    ivMotion.setImageResource(R.mipmap.motion_0);
+                }
+                break;
+            case R.id.button7:
+                if(check){
+                    ivCabinet.setImageResource(R.mipmap.locker_1);
+                }else{
+                    ivCabinet.setImageResource(R.mipmap.locker_0);
+                }
+                break;
+            case R.id.button8:
+                if(check){
+                    ivDoor.setImageResource(R.mipmap.door_1);
+                }else{
+                    ivDoor.setImageResource(R.mipmap.door_0);
+                }
+                break;
+            case R.id.button9:
+                if(check){
+                    ivWindow.setImageResource(R.mipmap.curtain_1);
+                }else{
+                    ivWindow.setImageResource(R.mipmap.curtain_0);
+                }
+                break;
+        }
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {

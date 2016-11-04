@@ -24,7 +24,7 @@ public class Constants {
     public static final String MQTT_TOPIC = "node/2110/777777ffff40/test_in";
     public static final String MQTT_PORT = "6883";
     public static final String MQTT_PROTOCOL = "TLS";
-    public static final String MQTT_USERNAME = "pwc01";
+    public static final String MQTT_USERNAME = "pwc03";
     public static final String MQTT_PASSWORD = "PwcIsPassw0rd";
-    public static final String MQTT_CLIENT_ID = "pwc01";
+    public static final String MQTT_CLIENT_ID = "777777ffff5f";
 }
